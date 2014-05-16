@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GroupViewController : UIViewController
+@interface GroupViewController : UIViewController{
+@private
+    UITableView *_groupListView;
+}
 
 @end

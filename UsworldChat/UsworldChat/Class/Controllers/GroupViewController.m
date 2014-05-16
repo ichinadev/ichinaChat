@@ -8,8 +8,11 @@
 
 #import "GroupViewController.h"
 
-@interface GroupViewController ()
-
+@interface GroupViewController (){
+@private
+    UIBarButtonItem *_backBI;
+}
+- (void)viewUnDidLoad;
 @end
 
 @implementation GroupViewController
@@ -27,14 +30,36 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"Groups";
+    self.view.backgroundColor = [UIColor cyanColor];
+    _backBI = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(backFunc:)];
+    self.navigationItem.leftBarButtonItem = _backBI;
+}
+
+- (void)backFunc:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    if ([self isViewLoaded] && [self.view window] == nil)
+    { self.view = nil; // 需要开发者手动释放控制器的视图。
+        [self viewUnDidLoad]; // 视图已被卸载，调用viewDIdLoad的反操作。
+    }
 }
 
+- (void)dealloc{
+    if ([self isViewLoaded]) {
+        [self viewUnDidLoad];
+    }
+}
+
+- (void)viewUnDidLoad{
+    _groupListView = nil;
+    _backBI = nil;
+}
 /*
 #pragma mark - Navigation
 
