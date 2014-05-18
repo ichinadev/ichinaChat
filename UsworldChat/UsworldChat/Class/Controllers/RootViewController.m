@@ -11,6 +11,7 @@
 #import "RootViewController.h"
 #import "AppDelegate.h"
 #import "FriendsViewController.h"
+#import "GroupViewController.h"
 @interface RootViewController ()<UITextFieldDelegate>{
 @private
     UILabel *_LBLTitle;
@@ -258,7 +259,11 @@
 
 - (void)groupsBtnClick:(UIButton *)sender {
     NSLog(@"进入群组页面");
+    GroupViewController *_groupCtrl = [[GroupViewController alloc] init];
+    _groupCtrl.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    UINavigationController *_naviCtrl = [[UINavigationController alloc] initWithRootViewController:_groupCtrl];
     
+    [self presentViewController:_naviCtrl animated:YES completion:nil];
 }
 
 #pragma mark - UITextFileDelegate

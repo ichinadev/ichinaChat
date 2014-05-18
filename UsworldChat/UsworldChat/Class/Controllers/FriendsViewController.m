@@ -21,6 +21,7 @@
 - (void)layoutSubViews:(CGRect)frame;
 //- (void)getData;
 - (AppDelegate *)appDelegate;
+- (void)viewUnDidLoad;
 @end
 
 @implementation FriendsViewController
@@ -128,8 +129,8 @@
     tableViewList.frame = CGRectMake(0.0f, 0.0, frame.size.width, frame.size.height);
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
+- (void)viewUnDidLoad {
+    //[super viewDidUnload];
     tableViewList = nil;
     dataList = nil;
     fetchedResultsController = nil;
@@ -144,6 +145,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    if ([self isViewLoaded] && [self.view window] == nil)
+    { self.view = nil; // 需要开发者手动释放控制器的视图。
+        [self viewUnDidLoad]; // 视图已被卸载，调用viewDIdLoad的反操作。
+    }
+}
+
+- (void)dealloc{
+    if ([self isViewLoaded]) {
+        [self viewUnDidLoad];
+    }
 }
 
 #pragma mark -- NSFetchedResultsControllerDelegate

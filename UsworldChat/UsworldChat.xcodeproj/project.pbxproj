@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A45E26319248F8800424240 /* GroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A45E26219248F8800424240 /* GroupViewController.m */; };
 		2A52010618DBE9A00012BB17 /* ToolViewInputText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A52010218DBE9A00012BB17 /* ToolViewInputText@2x.png */; };
 		2A52010718DBE9A00012BB17 /* ToolViewInputTextHL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A52010318DBE9A00012BB17 /* ToolViewInputTextHL@2x.png */; };
 		2A52010818DBE9A00012BB17 /* ToolViewInputVoice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A52010418DBE9A00012BB17 /* ToolViewInputVoice@2x.png */; };
@@ -246,6 +247,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A45E26119248F8800424240 /* GroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupViewController.h; sourceTree = "<group>"; };
+		2A45E26219248F8800424240 /* GroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupViewController.m; sourceTree = "<group>"; };
 		2A52010218DBE9A00012BB17 /* ToolViewInputText@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ToolViewInputText@2x.png"; sourceTree = "<group>"; };
 		2A52010318DBE9A00012BB17 /* ToolViewInputTextHL@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ToolViewInputTextHL@2x.png"; sourceTree = "<group>"; };
 		2A52010418DBE9A00012BB17 /* ToolViewInputVoice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ToolViewInputVoice@2x.png"; sourceTree = "<group>"; };
@@ -1696,6 +1699,8 @@
 				2A6C1C5818D705040096BF72 /* FriendsViewController.m */,
 				2A8B926618D982AD00262E29 /* ChatViewController.h */,
 				2A8B926718D982AD00262E29 /* ChatViewController.m */,
+				2A45E26119248F8800424240 /* GroupViewController.h */,
+				2A45E26219248F8800424240 /* GroupViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2003,6 +2008,7 @@
 				2A6C1C4018D6C5F40096BF72 /* GCDMulticastDelegate.m in Sources */,
 				2A6C1BEA18D6C5F40096BF72 /* XMPPBandwidthMonitor.m in Sources */,
 				2A6C1C3518D6C5F40096BF72 /* XMPPPing.m in Sources */,
+				2A45E26319248F8800424240 /* GroupViewController.m in Sources */,
 				2A6C1C4618D6C5F40096BF72 /* DDAbstractDatabaseLogger.m in Sources */,
 				2A6C1BFF18D6C5F40096BF72 /* XMPPRoom.xcdatamodeld in Sources */,
 				2A6C1BF118D6C5F40096BF72 /* XMPPRoster.xcdatamodel in Sources */,
