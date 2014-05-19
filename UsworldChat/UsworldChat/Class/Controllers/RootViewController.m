@@ -186,8 +186,8 @@
     //shimatomacbook-pro.local
     _hostTextFiled.text = @"115.183.11.70";
     _portTextFiled.text = @"5222";
-    _userNameFiled.text = @"freespaces_one";
-    _passWordFiled.text = @"freespaces_one";
+    _userNameFiled.text = @"admin";
+    _passWordFiled.text = @"shitou0404";
     
     _friendsBtn = [[UIButton alloc] initWithFrame:CGRectZero];
     _friendsBtn.layer.cornerRadius = 8.0f;

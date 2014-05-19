@@ -19,6 +19,7 @@
     XMPPMessageArchivingCoreDataStorage *xmppMessageArchivingCoreDataStorage;
     XMPPMessageArchiving *xmppMessageArchiving;
     
+    
 }
 
 @property (strong, nonatomic) UIWindow *window;
