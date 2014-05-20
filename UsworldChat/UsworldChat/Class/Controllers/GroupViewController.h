@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface GroupViewController : UIViewController{
 @private
     UITableView *_groupListView;

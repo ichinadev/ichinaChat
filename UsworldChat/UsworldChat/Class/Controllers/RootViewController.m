@@ -184,10 +184,10 @@
     
     //kuruwa-toutoumatoimac-3.local
     //shimatomacbook-pro.local
-    _hostTextFiled.text = @"115.183.11.70";
-    _portTextFiled.text = @"5222";
-    _userNameFiled.text = @"admin";
-    _passWordFiled.text = @"shitou0404";
+    _hostTextFiled.text = HOST_IP;
+    _portTextFiled.text = PORTNUM;
+    _userNameFiled.text = UserName;
+    _passWordFiled.text = PassWord;
     
     _friendsBtn = [[UIButton alloc] initWithFrame:CGRectZero];
     _friendsBtn.layer.cornerRadius = 8.0f;

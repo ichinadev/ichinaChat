@@ -19,12 +19,12 @@
     XMPPMessageArchivingCoreDataStorage *xmppMessageArchivingCoreDataStorage;
     XMPPMessageArchiving *xmppMessageArchiving;
     
-    
 }
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) id<ChatDelegate> chatDelegate;
 @property (strong, nonatomic) id SecondDelegate;
+@property (strong, nonatomic) id groupsDelegate;
 @property (strong, nonatomic) XMPPStream *xmppStream;
 @property (strong, nonatomic) XMPPReconnect *xmppReconnect;
 @property (strong, nonatomic) XMPPRosterCoreDataStorage *xmppRosterCoreDataStorage;
@@ -40,6 +40,7 @@
 @protocol ChatDelegate <NSObject>
 @optional
 - (void)DidAuthenticate:(AppDelegate *)appDelegate;
--(void)getNewMessage:(AppDelegate *)appD Message:(XMPPMessage *)message;
+- (void)getNewMessage:(AppDelegate *)appD Message:(XMPPMessage *)message;
 
+- (void)getIQ:(AppDelegate *)appD IQ:(XMPPIQ *)iq;
 @end

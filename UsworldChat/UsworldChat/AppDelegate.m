@@ -32,6 +32,7 @@
 @synthesize xmppMessageArchiving;
 @synthesize xmppMessageArchivingCoreDataStorage;
 @synthesize SecondDelegate;
+@synthesize groupsDelegate;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -254,6 +255,10 @@
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq
 {
     NSLog(@"didReceiveIQ %@", iq.description);
+
+    if ([self.groupsDelegate respondsToSelector:@selector(getIQ:IQ:)]) {
+        [self.groupsDelegate getIQ:self IQ:iq];
+    }
     return YES;
 }
 

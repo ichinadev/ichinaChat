@@ -7,12 +7,19 @@
 //
 
 #import "GroupViewController.h"
-
-@interface GroupViewController (){
+#import "AppDelegate.h"
+@interface GroupViewController ()<ChatDelegate>{
 @private
     UIBarButtonItem *_backBI;
+    NSArray *_groupDataList;
 }
+@property(nonatomic, strong)NSString * constID;
 - (void)viewUnDidLoad;
+- (AppDelegate *)appDelegate;
+/*
+ *获取房间列表
+ */
+- (void)getGroupData;
 @end
 
 @implementation GroupViewController
@@ -34,6 +41,11 @@
     self.view.backgroundColor = [UIColor cyanColor];
     _backBI = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(backFunc:)];
     self.navigationItem.leftBarButtonItem = _backBI;
+    
+    [self getGroupData];
+    
+    //填充当前的TableView
+    
 }
 
 - (void)backFunc:(id)sender{
@@ -56,9 +68,32 @@
     }
 }
 
+#pragma self Func
 - (void)viewUnDidLoad{
     _groupListView = nil;
     _backBI = nil;
+    _groupListView = nil;
+}
+
+- (AppDelegate *)appDelegate {
+    AppDelegate *_delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    _delegate.groupsDelegate = self;
+    return _delegate;
+}
+
+- (void)getGroupData {
+    NSXMLElement *_iq = [NSXMLElement elementWithName:@"iq"];
+    [_iq addAttributeWithName:FROM stringValue:[[NSUserDefaults standardUserDefaults] objectForKey:kJID]];
+    [_iq addAttributeWithName:__ID stringValue:@"disco1"];
+    self.constID = @"disco1";
+    [_iq addAttributeWithName:TO stringValue:[NSString stringWithFormat:@"conference.%@", HOSTADDRESS]];
+    [_iq addAttributeWithName:TYPE stringValue:@"get"];
+    
+    NSXMLElement *_query = [NSXMLElement elementWithName:@"query"];
+    [_query addAttributeWithName:@"xmlns" stringValue:@"http://jabber.org/protocol/disco#items"];
+    [_iq addChild:_query];
+    
+    [[[self appDelegate] xmppStream] sendElement:_iq];
 }
 /*
 #pragma mark - Navigation
@@ -70,5 +105,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+#pragma charDelegate
+- (void)getIQ:(AppDelegate *)appD IQ:(XMPPIQ *)iq {
+    NSLog(@"----------------------IQ=%@", iq.attributesAsDictionary);
+    NSMutableDictionary *_attributeDic = iq.attributesAsDictionary;
+    if ([[_attributeDic objectForKey:__ID] isEqualToString:self.constID]) {
+        NSLog(@"ID验证正确，获取房间列表数据");
+        
+    }
+    
+}
+
 
 @end
