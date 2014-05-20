@@ -28,8 +28,8 @@
 #define HOSTADDRESS @"kuruwa-toutoumatoimac-3.local"
 #define PORTNUM @"5222"
 #define HOST_IP @"115.183.11.70"
-#define UserName @"admin"
-#define PassWord @"shitou0404"
+#define UserName @"freespaces_one"
+#define PassWord @"freespaces_one"
 
 #define FROM @"from"
 #define TO @"to"
