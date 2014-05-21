@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A242E32192C9D9900F8AD5F /* GroupChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A242E31192C9D9900F8AD5F /* GroupChatViewController.m */; };
 		2A45E26319248F8800424240 /* GroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A45E26219248F8800424240 /* GroupViewController.m */; };
 		2A52010618DBE9A00012BB17 /* ToolViewInputText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A52010218DBE9A00012BB17 /* ToolViewInputText@2x.png */; };
 		2A52010718DBE9A00012BB17 /* ToolViewInputTextHL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A52010318DBE9A00012BB17 /* ToolViewInputTextHL@2x.png */; };
@@ -247,6 +248,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A242E30192C9D9900F8AD5F /* GroupChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChatViewController.h; sourceTree = "<group>"; };
+		2A242E31192C9D9900F8AD5F /* GroupChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChatViewController.m; sourceTree = "<group>"; };
 		2A45E26119248F8800424240 /* GroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupViewController.h; sourceTree = "<group>"; };
 		2A45E26219248F8800424240 /* GroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupViewController.m; sourceTree = "<group>"; };
 		2A52010218DBE9A00012BB17 /* ToolViewInputText@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ToolViewInputText@2x.png"; sourceTree = "<group>"; };
@@ -1701,6 +1704,8 @@
 				2A8B926718D982AD00262E29 /* ChatViewController.m */,
 				2A45E26119248F8800424240 /* GroupViewController.h */,
 				2A45E26219248F8800424240 /* GroupViewController.m */,
+				2A242E30192C9D9900F8AD5F /* GroupChatViewController.h */,
+				2A242E31192C9D9900F8AD5F /* GroupChatViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1977,6 +1982,7 @@
 				2A6C1BE218D6C5F40096BF72 /* XMPPElement.m in Sources */,
 				2A6C1C0E18D6C5F40096BF72 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
 				2A6C1C4518D6C5F40096BF72 /* GCDAsyncSocket.m in Sources */,
+				2A242E32192C9D9900F8AD5F /* GroupChatViewController.m in Sources */,
 				2A800D9D18DA927C00F77C98 /* JSMessageSoundEffect.m in Sources */,
 				2A6C1BDB18D6C5F40096BF72 /* XMPPDigestMD5Authentication.m in Sources */,
 				2A52013818DC11580012BB17 /* UIView+Animation.m in Sources */,

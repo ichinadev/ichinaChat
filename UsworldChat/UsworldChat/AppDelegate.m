@@ -240,7 +240,7 @@
 }
 /* 未成功完成验证 */
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(DDXMLElement *)error {
-    NSLog(@"didNotAuthenticate");
+    NSLog(@"didNotAuthenticate%@", error.description);
 }
 
 - (void)xmppStream:(XMPPStream *)sender didSendIQ:(XMPPIQ *)iq{
