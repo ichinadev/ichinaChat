@@ -8,6 +8,7 @@
 
 #import "GroupViewController.h"
 #import "AppDelegate.h"
+#import "GroupChatViewController.h"
 @interface GroupViewController ()<ChatDelegate>{
 @private
     UIBarButtonItem *_backBI;
@@ -143,22 +144,26 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     // didselect event
-    
-    //加入房间
-    NSXMLElement *presence = [NSXMLElement elementWithName:@"presence"];
-    [presence addAttributeWithName:FROM stringValue:[[NSUserDefaults standardUserDefaults] objectForKey:kJID]];
-    //房间名字 服务器名字 进入房间后使用的昵称
     NSMutableDictionary *_dic = [_groupDataList objectAtIndex:[indexPath row]];
-    [presence addAttributeWithName:TO stringValue:[NSString stringWithFormat:@"%@/%@", [_dic objectForKey:@"jid"], UserName]];
-    [[self appDelegate].xmppStream sendElement:presence];
+    GroupChatViewController *_groupChatCtrl = [[GroupChatViewController alloc] init];
+    _groupChatCtrl.groupDic = _dic;
+    [self.navigationController pushViewController:_groupChatCtrl animated:YES];
     
-    //进入房间说话
-    NSString *_tostr = [_dic objectForKey:@"jid"];
-    XMPPJID *_jid = [XMPPJID jidWithString:_tostr];
-    XMPPMessage *message = [XMPPMessage messageWithType:@"groupchat" to:_jid];
-    /* 转换汉字编码解决不能接受汉字离线消息的问题 */
-    [message addBody:[@"hello world!" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    [[[self appDelegate] xmppStream] sendElement:message];
+//    //加入房间
+//    NSXMLElement *presence = [NSXMLElement elementWithName:@"presence"];
+//    [presence addAttributeWithName:FROM stringValue:[[NSUserDefaults standardUserDefaults] objectForKey:kJID]];
+//    //房间名字 服务器名字 进入房间后使用的昵称
+//    NSMutableDictionary *_dic = [_groupDataList objectAtIndex:[indexPath row]];
+//    [presence addAttributeWithName:TO stringValue:[NSString stringWithFormat:@"%@/%@", [_dic objectForKey:@"jid"], UserName]];
+//    [[self appDelegate].xmppStream sendElement:presence];
+//    
+//    //进入房间说话
+//    NSString *_tostr = [_dic objectForKey:@"jid"];
+//    XMPPJID *_jid = [XMPPJID jidWithString:_tostr];
+//    XMPPMessage *message = [XMPPMessage messageWithType:@"groupchat" to:_jid];
+//    /* 转换汉字编码解决不能接受汉字离线消息的问题 */
+//    [message addBody:[@"hello world!" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//    [[[self appDelegate] xmppStream] sendElement:message];
 }
 
 #pragma mark UITableViewDataSource

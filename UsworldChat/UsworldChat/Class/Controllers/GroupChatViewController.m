@@ -29,6 +29,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = [self.groupDic objectForKey:@"name"];
 }
 
 - (void)didReceiveMemoryWarning
