@@ -32,6 +32,7 @@
 @synthesize xmppMessageArchiving;
 @synthesize xmppMessageArchivingCoreDataStorage;
 @synthesize SecondDelegate;
+@synthesize groupsDelegate;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -239,7 +240,7 @@
 }
 /* 未成功完成验证 */
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(DDXMLElement *)error {
-    NSLog(@"didNotAuthenticate");
+    NSLog(@"didNotAuthenticate%@", error.description);
 }
 
 - (void)xmppStream:(XMPPStream *)sender didSendIQ:(XMPPIQ *)iq{
@@ -254,6 +255,10 @@
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq
 {
     NSLog(@"didReceiveIQ %@", iq.description);
+
+    if ([self.groupsDelegate respondsToSelector:@selector(getIQ:IQ:)]) {
+        [self.groupsDelegate getIQ:self IQ:iq];
+    }
     return YES;
 }
 

@@ -27,6 +27,14 @@
 
 #define HOSTADDRESS @"kuruwa-toutoumatoimac-3.local"
 #define PORTNUM @"5222"
+#define HOST_IP @"115.183.11.70"
+#define UserName @"butone"
+#define PassWord @"butone"
+
+#define FROM @"from"
+#define TO @"to"
+#define TYPE @"type"
+#define __ID @"id"
 
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
