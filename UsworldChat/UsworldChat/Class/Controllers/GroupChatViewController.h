@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface GroupChatViewController : UIViewController{
+#import "JSMessagesViewController.h"
+@interface GroupChatViewController : JSMessagesViewController{
 @private
 
 }
