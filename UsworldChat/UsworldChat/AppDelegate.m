@@ -322,7 +322,7 @@
 		                                                         xmppStream:xmppStream
 		                                               managedObjectContext:[[self xmppRosterCoreDataStorage] mainThreadManagedObjectContext]];
 		
-		NSString *body = [[message elementForName:@"body"] stringValue];
+		//NSString *body = [[message elementForName:@"body"] stringValue];
 		NSString *displayName = [user displayName];
         
 		if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
@@ -369,7 +369,46 @@
         if ([self.SecondDelegate respondsToSelector:@selector(getNewMessage:Message:)]) {
             [self.SecondDelegate getNewMessage:self Message:message];
         }
-	}
+	}else if ([message isMessageWithBody]){
+        //NSString *body = [[message elementForName:@"body"] stringValue];
+		NSString *displayName = [XMPPJID jidWithString:[message fromStr]].user;
+        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
+		{
+            //			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:displayName
+            //                                                                message:body
+            //                                                               delegate:nil
+            //                                                      cancelButtonTitle:@"Ok"
+            //                                                      otherButtonTitles:nil];
+            //			[alertView show];
+		}
+		else
+		{
+            NSMutableString *showString = [[NSMutableString alloc] init];
+            if ([message.body hasPrefix:@"base64"]) {
+                NSData *audioData = [[message.body substringFromIndex:6] base64DecodedData];
+                if (_player != nil) {
+                    _player = nil;
+                }
+                _player = [[AVAudioPlayer alloc] initWithData:audioData error:nil];
+                int timeCount = _player.duration;
+                [showString appendFormat:@"点击收听 %d''", timeCount];
+                for (int i = 0; i < timeCount; i++) {
+                    [showString appendFormat:@"%@", @" "];
+                }
+            }else if ([message.body hasPrefix:@"images"]){
+                [showString appendString:@"发来图片"];
+            }else{
+                [showString appendFormat:@"%@",[message.body stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            }
+			// We are not active, so use a local notification instead
+			UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+			localNotification.alertAction = @"Ok";
+            localNotification.soundName = UILocalNotificationDefaultSoundName;
+			localNotification.alertBody = [NSString stringWithFormat:@"%@:%@",displayName,showString];
+            
+			[[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+		}
+    }
 }
 
 
