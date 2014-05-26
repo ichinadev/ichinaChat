@@ -25,13 +25,13 @@
 #define SPACE_V 10.0f
 #define SPACE_H 20.0f
 
-#define HOSTADDRESS @"kuruwa-toutoumatoimac-3.local"
-//#define HOSTADDRESS @"192.168.1.100"
+//#define HOSTADDRESS @"kuruwa-toutoumatoimac-3.local"
+#define HOSTADDRESS @"192.168.1.100"
 #define PORTNUM @"5222"
-#define HOST_IP @"115.183.11.70"
-//#define HOST_IP @"101.39.78.136"
-#define UserName @"admin"
-#define PassWord @"shitou0404"
+//#define HOST_IP @"115.183.11.70"
+#define HOST_IP @"192.168.1.100"
+#define UserName @"nana"
+#define PassWord @"nana"
 
 #define FROM @"from"
 #define TO @"to"
