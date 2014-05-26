@@ -367,11 +367,11 @@
     if(hasAvatar) {
         switch (type) {
             case JSBubbleMessageTypeIncoming:
-                [cell setAvatarImage:[self.dataSource avatarImageForIncomingMessage]];
+                [cell setAvatarImage:[self.dataSource avatarImageForIncomingMessageAtIndexPath:indexPath]];
                 break;
                 
             case JSBubbleMessageTypeOutgoing:
-                [cell setAvatarImage:[self.dataSource avatarImageForOutgoingMessage]];
+                [cell setAvatarImage:[self.dataSource avatarImageForOutgoingMessageAtIndexPath:indexPath]];
                 break;
         }
     }

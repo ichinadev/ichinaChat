@@ -2083,8 +2083,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Taotao Guo (JG9CK6PHGX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Taotao Guo (JG9CK6PHGX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: shi jianlong (WVGQR6R2TF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: shi jianlong (WVGQR6R2TF)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2119,8 +2119,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Taotao Guo (JG9CK6PHGX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Taotao Guo (JG9CK6PHGX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: shi jianlong (WVGQR6R2TF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: shi jianlong (WVGQR6R2TF)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2141,7 +2141,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Taotao Guo (JG9CK6PHGX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: shi jianlong (WVGQR6R2TF)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UsworldChat/UsworldChat-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2165,7 +2165,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Taotao Guo (JG9CK6PHGX)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: shi jianlong (WVGQR6R2TF)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UsworldChat/UsworldChat-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

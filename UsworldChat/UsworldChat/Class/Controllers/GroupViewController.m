@@ -9,7 +9,7 @@
 #import "GroupViewController.h"
 #import "AppDelegate.h"
 #import "GroupChatViewController.h"
-@interface GroupViewController ()<ChatDelegate, XMPPRoomDelegate, XMPPRoomStorage>{
+@interface GroupViewController ()<ChatDelegate>{
 @private
     UIBarButtonItem *_backBI;
     NSMutableArray *_groupDataList;
@@ -149,12 +149,14 @@
     _groupChatCtrl.groupDic = _dic;
     [self.navigationController pushViewController:_groupChatCtrl animated:YES];
     
+    //NSString* jidRoom=[NSString stringWithFormat:@"111@conference.127.0.0.1"];
+    
     //加入房间
-    NSXMLElement *presence = [NSXMLElement elementWithName:@"presence"];
-    [presence addAttributeWithName:FROM stringValue:[[NSUserDefaults standardUserDefaults] objectForKey:kJID]];
-    //房间名字 服务器名字 进入房间后使用的昵称
-    [presence addAttributeWithName:TO stringValue:[NSString stringWithFormat:@"%@/%@", [_dic objectForKey:@"jid"], UserName]];
-    [[self appDelegate].xmppStream sendElement:presence];
+//    NSXMLElement *presence = [NSXMLElement elementWithName:@"presence"];
+//    [presence addAttributeWithName:FROM stringValue:[[NSUserDefaults standardUserDefaults] objectForKey:kJID]];
+//    //房间名字 服务器名字 进入房间后使用的昵称
+//    [presence addAttributeWithName:TO stringValue:[NSString stringWithFormat:@"%@/%@", [_dic objectForKey:@"jid"], UserName]];
+//    [[self appDelegate].xmppStream sendElement:presence];
     
 //    //进入房间说话
 //    NSString *_tostr = [_dic objectForKey:@"jid"];
@@ -210,190 +212,7 @@
     return cell;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - XMPPRoomStorage
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//
-// -- PUBLIC METHODS --
-//
-// There are no public methods required by this protocol.
-//
-// Each individual storage class will provide a proper way to access/enumerate the
-// occupants/messages according to the underlying storage mechanism.
-//
 
-
-//
-//
-// -- PRIVATE METHODS --
-//
-// These methods are designed to be used ONLY by the XMPPRoom class.
-//
-//
-
-/**
- * Configures the storage class, passing it's parent and parent's dispatch queue.
- *
- * This method is called by the init method of the XMPPRoom class.
- * This method is designed to inform the storage class of it's parent
- * and of the dispatch queue the parent will be operating on.
- *
- * A storage class may choose to operate on the same queue as it's parent,
- * as the majority of the time it will be getting called by the parent.
- * If both are operating on the same queue, the combination may run faster.
- *
- * Some storage classes support multiple xmppStreams,
- * and may choose to operate on their own internal queue.
- *
- * This method should return YES if it was configured properly.
- * It should return NO only if configuration failed.
- * For example, a storage class designed to be used only with a single xmppStream is being added to a second stream.
- * The XMPPCapabilites class is configured to ignore the passed
- * storage class in it's init method if this method returns NO.
- **/
-- (BOOL)configureWithParent:(XMPPRoom *)aParent queue:(dispatch_queue_t)queue{
-    return YES;
-}
-
-/**
- * Updates and returns the occupant for the given presence element.
- * If the presence type is "available", and the occupant doesn't already exist, then one should be created.
- **/
-- (void)handlePresence:(XMPPPresence *)presence room:(XMPPRoom *)room{
-NSLog(@"1");
-}
-
-/**
- * Stores or otherwise handles the given message element.
- **/
-- (void)handleIncomingMessage:(XMPPMessage *)message room:(XMPPRoom *)room{
-NSLog(@"2");
-}
-- (void)handleOutgoingMessage:(XMPPMessage *)message room:(XMPPRoom *)room{
-NSLog(@"3");
-}
-
-/**
- * Handles leaving the room, which generally means clearing the list of occupants.
- **/
-- (void)handleDidLeaveRoom:(XMPPRoom *)room{
-NSLog(@"4");
-}
-
-/**
- * May be used if there's anything special to do when joining a room.
- **/
-- (void)handleDidJoinRoom:(XMPPRoom *)room withNickname:(NSString *)nickname{
-NSLog(@"5");
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - XMPPRoomDelegate
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-- (void)xmppRoomDidCreate:(XMPPRoom *)sender{
-NSLog(@"6");
-}
-
-/**
- * Invoked with the results of a request to fetch the configuration form.
- * The given config form will look something like:
- *
- * <x xmlns='jabber:x:data' type='form'>
- *   <title>Configuration for MUC Room</title>
- *   <field type='hidden'
- *           var='FORM_TYPE'>
- *     <value>http://jabber.org/protocol/muc#roomconfig</value>
- *   </field>
- *   <field label='Natural-Language Room Name'
- *           type='text-single'
- *            var='muc#roomconfig_roomname'/>
- *   <field label='Enable Public Logging?'
- *           type='boolean'
- *            var='muc#roomconfig_enablelogging'>
- *     <value>0</value>
- *   </field>
- *   ...
- * </x>
- *
- * The form is to be filled out and then submitted via the configureRoomUsingOptions: method.
- *
- * @see fetchConfigurationForm:
- * @see configureRoomUsingOptions:
- **/
-- (void)xmppRoom:(XMPPRoom *)sender didFetchConfigurationForm:(NSXMLElement *)configForm{
-NSLog(@"7");
-}
-
-- (void)xmppRoom:(XMPPRoom *)sender willSendConfiguration:(XMPPIQ *)roomConfigForm{
-NSLog(@"8");
-}
-
-- (void)xmppRoom:(XMPPRoom *)sender didConfigure:(XMPPIQ *)iqResult{
-NSLog(@"9");
-}
-- (void)xmppRoom:(XMPPRoom *)sender didNotConfigure:(XMPPIQ *)iqResult{
-NSLog(@"11");
-}
-
-- (void)xmppRoomDidJoin:(XMPPRoom *)sender{
-NSLog(@"12");
-}
-- (void)xmppRoomDidLeave:(XMPPRoom *)sender{
-NSLog(@"13");
-}
-
-- (void)xmppRoomDidDestroy:(XMPPRoom *)sender{
-NSLog(@"14");
-}
-
-- (void)xmppRoom:(XMPPRoom *)sender occupantDidJoin:(XMPPJID *)occupantJID withPresence:(XMPPPresence *)presence{
-NSLog(@"15");
-}
-- (void)xmppRoom:(XMPPRoom *)sender occupantDidLeave:(XMPPJID *)occupantJID withPresence:(XMPPPresence *)presence{
-NSLog(@"16");
-}
-- (void)xmppRoom:(XMPPRoom *)sender occupantDidUpdate:(XMPPJID *)occupantJID withPresence:(XMPPPresence *)presence{
-NSLog(@"17");
-}
-
-/**
- * Invoked when a message is received.
- * The occupant parameter may be nil if the message came directly from the room, or from a non-occupant.
- **/
-- (void)xmppRoom:(XMPPRoom *)sender didReceiveMessage:(XMPPMessage *)message fromOccupant:(XMPPJID *)occupantJID{
-NSLog(@"18");
-}
-
-- (void)xmppRoom:(XMPPRoom *)sender didFetchBanList:(NSArray *)items{
-NSLog(@"19");
-}
-- (void)xmppRoom:(XMPPRoom *)sender didNotFetchBanList:(XMPPIQ *)iqError{
-NSLog(@"21");
-}
-
-- (void)xmppRoom:(XMPPRoom *)sender didFetchMembersList:(NSArray *)items{
-NSLog(@"31");
-}
-- (void)xmppRoom:(XMPPRoom *)sender didNotFetchMembersList:(XMPPIQ *)iqError{
-    NSLog(@"41");
-}
-
-- (void)xmppRoom:(XMPPRoom *)sender didFetchModeratorsList:(NSArray *)items{
-NSLog(@"51");
-}
-- (void)xmppRoom:(XMPPRoom *)sender didNotFetchModeratorsList:(XMPPIQ *)iqError{
-NSLog(@"61");
-}
-
-- (void)xmppRoom:(XMPPRoom *)sender didEditPrivileges:(XMPPIQ *)iqResult{
-NSLog(@"71");
-}
-- (void)xmppRoom:(XMPPRoom *)sender didNotEditPrivileges:(XMPPIQ *)iqError{
-    NSLog(@"81");
-}
 
 
 @end

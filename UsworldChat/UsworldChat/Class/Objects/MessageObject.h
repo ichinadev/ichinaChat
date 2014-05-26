@@ -11,4 +11,5 @@
 @interface MessageObject : NSObject
 @property(strong, nonatomic)NSString *body;
 @property(strong, nonatomic)NSString *toStr;
+@property(strong, nonatomic)NSString *fromStr;
 @end
