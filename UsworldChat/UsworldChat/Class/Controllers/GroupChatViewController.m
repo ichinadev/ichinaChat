@@ -126,6 +126,13 @@
     _backBI = nil;
 }
 #pragma mark -- self method
+- (NSDate *)UsWorldDateFromString:(NSString *)dateString{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat: @"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    NSDate *destDate= [dateFormatter dateFromString:dateString];
+    return destDate;
+}
+
 - (AppDelegate *)appDelegate {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     //delegate.chatDelegate =  self;
@@ -134,7 +141,12 @@
 }
 
 - (void)sendMessage:(NSString *)messageContent {
-   
+ //   XMPPMessage *message = [XMPPMessage messageWithType:@"groupchat" to:[groupDic objectForKey:@"jid"]];
+    /* 转换汉字编码解决不能接受汉字离线消息的问题 */
+ //   [message addBody:[messageContent stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//    [[[self appDelegate] xmppStream] sendElement:message];
+//    [self getCurrentMessageData:message];
+    [_room sendMessageWithBody:[messageContent stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 }
 
 #pragma mark - tableViewDataSource
@@ -331,6 +343,7 @@
 - (UIImage *)avatarImageForOutgoingMessageAtIndexPath:(NSIndexPath *)indexPath
 {
     return [UIImage imageNamed:@"demo-avatar-woz"];
+    //return [self imageFromText:@"我"];
 }
 
 - (id)dataForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -545,6 +558,7 @@
  **/
 - (void)xmppRoom:(XMPPRoom *)sender didReceiveMessage:(XMPPMessage *)message fromOccupant:(XMPPJID *)occupantJID{
     //NSLog(@"18");
+    NSMutableDictionary *messageDic;// = ((NSXMLElement *)[message.children objectAtIndex:2]).attributesAsDictionary;
     NSLog(@"didReceiveMessage %@ from %@", message.body, occupantJID.resource);
     
     MessageObject *_obje = [[MessageObject alloc] init];
@@ -553,7 +567,21 @@
     [_obje setFromStr:occupantJID.resource];
     [self.messageArray addObject:_obje];
     
-    [self.timestamps addObject:[NSDate date]];
+    //获取消息的时间
+    for (int i = 0; i < message.childCount; i++) {
+        NSXMLElement *xmlelement = [message.children objectAtIndex:i];
+        if ([xmlelement.xmlns isEqualToString:@"urn:xmpp:delay"]) {
+            messageDic = xmlelement.attributesAsDictionary;
+        }
+    }
+    NSLog(@"该消息的时间为%@", [messageDic objectForKey:@"stamp"]);
+    NSLog(@"该消息的时间nsdate为%@", [self UsWorldDateFromString:[messageDic objectForKey:@"stamp"]]);
+    NSDate *_DATE = [self UsWorldDateFromString:[messageDic objectForKey:@"stamp"]];
+    if (_DATE == nil) {
+       [self.timestamps addObject:[NSDate date]];
+    }else {
+       [self.timestamps addObject:[self UsWorldDateFromString:[messageDic objectForKey:@"stamp"]]];
+    }
     
     [self finishSend];
 }
