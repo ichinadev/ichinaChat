@@ -4,7 +4,7 @@
 //
 //  Created by 郭 涛涛 on 14-3-14.
 //  Copyright (c) 2014年 ifreespaces. All rights reserved.
-//
+//  测试变更
 
 #import <UIKit/UIKit.h>
 #import "XMPPFramework.h"
